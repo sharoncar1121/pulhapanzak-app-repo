@@ -45,6 +45,9 @@ import { userDto } from '../../interfaces/userDto';
 })
 export class RegisterPagePage {
   private formBuilder: FormBuilder = inject(FormBuilder);
+  passwordType: string = 'password';
+  showIcon: boolean = false;
+
   registerForm: FormGroup;
 
   constructor() {
@@ -163,6 +166,11 @@ export class RegisterPagePage {
       return phoneControl.touched && phoneControl.hasError('pattern');
     }
     return false;
+  }
+
+  togglePasswordVisibility(): void {
+     this.showIcon = !this.showIcon;
+    this.passwordType = this.showIcon ? 'text' : 'password';
   }
 
   register():void{
