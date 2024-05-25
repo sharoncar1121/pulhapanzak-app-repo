@@ -82,90 +82,58 @@ export class RegisterPagePage {
 
   get nameRequired(): boolean {
     const nameControl = this.registerForm.get('name');
-    if (nameControl) {
-      return nameControl.touched && nameControl.hasError('required');
-    }
-    return false;
+    return nameControl ? (nameControl.touched && nameControl.hasError('required')) : false;
   }
 
   get apellidoRequired(): boolean {
     const apellidoControl = this.registerForm.get('apellidos');
-    if (apellidoControl) {
-      return apellidoControl.touched && apellidoControl.hasError('required');
-    }
-    return false;
+    return apellidoControl? (apellidoControl.touched && apellidoControl.hasError('required')) : false;
   }
 
   get emailRequired(): boolean {
     const emailControl = this.registerForm.get('email');
-    if (emailControl) {
-      return emailControl.touched && emailControl.hasError('required');
-    }
-    return false;
+   return emailControl? (emailControl.touched && emailControl.hasError( 'required')) : false;
   }
 
   get emailValidate(): boolean {
     const emailControl = this.registerForm.get('email');
-    if (emailControl) {
-      return emailControl.touched && emailControl.hasError('email');
-    }
-    return false;
+    return emailControl? (emailControl.touched && emailControl.hasError( 'email')) : false;
   }
 
   get passwordRequired(): boolean {
     const passwordControl = this.registerForm.get('password');
-    if (passwordControl) {
-      return passwordControl.touched && passwordControl.hasError('required');
-    }
-    return false;
+    return passwordControl? (passwordControl.touched && passwordControl.hasError('required')) : false;
   }
 
   get dniRequired(): boolean {
     const dniControl = this.registerForm.get('DNI');
-    if (dniControl) {
-      return dniControl.touched && dniControl.hasError('required');
-    }
-    return false;
+   return dniControl? (dniControl.touched && dniControl.hasError( 'required')) : false;
   }
 
   get dniValidate(): boolean {
     const dniControl = this.registerForm.get('DNI');
-    if (dniControl) {
-      return dniControl.touched && dniControl.hasError('minlength');
-    }
-    return false;
+    return dniControl? (dniControl.touched && dniControl.hasError( 'minlength')) : false;
   }
 
   get dniValidatePattern(): boolean {
     const dniControl = this.registerForm.get('DNI');
-    if (dniControl) {
-      return dniControl.touched && dniControl.hasError('pattern');
-    }
-    return false;
+   return dniControl? (dniControl.touched && dniControl.hasError( 'pattern')) : false;
   }
 
   get phoneRequired(): boolean {
     const phoneControl = this.registerForm.get('phone');
-    if (phoneControl) {
-      return phoneControl.touched && phoneControl.hasError('required');
-    }
-    return false;
+    return phoneControl? (phoneControl.touched && phoneControl.hasError('required')) : false;
   }
 
   get phoneValidate(): boolean {
     const phoneControl = this.registerForm.get('phone');
-    if (phoneControl) {
-      return phoneControl.touched && phoneControl.hasError('minlenght');
-    }
-    return false;
+    return phoneControl? (phoneControl.touched && phoneControl.hasError( 'minlength')) : false;
   }
 
   get phonePattern(): boolean {
     const phoneControl = this.registerForm.get('phone');
-    if (phoneControl) {
-      return phoneControl.touched && phoneControl.hasError('pattern');
-    }
-    return false;
+    return phoneControl? (phoneControl.touched && phoneControl.hasError( 'pattern')) : false;
+
   }
 
   togglePasswordVisibility(): void {
