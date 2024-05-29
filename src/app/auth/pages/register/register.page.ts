@@ -17,14 +17,18 @@ import {
   IonToolbar,
   IonButton,
   IonIcon,
-  IonText
+  IonText,
+  IonInputPasswordToggle
 } from '@ionic/angular/standalone';
 import { userDto } from '../../interfaces/userDto';
 
+import { addIcons } from 'ionicons';
+import { checkmark, document, globe, imageOutline, add } from 'ionicons/icons';
+
 @Component({
   selector: 'app-register-page',
-  templateUrl: './register-page.page.html',
-  styleUrls: ['./register-page.page.scss'],
+  templateUrl: './register.page.html',
+  styleUrls: ['./register.page.scss'],
   standalone: true,
   imports: [
     IonContent,
@@ -40,14 +44,12 @@ import { userDto } from '../../interfaces/userDto';
     IonItem,
     IonButton,
     IonIcon,
-    IonText
+    IonText,
+    IonInputPasswordToggle
   ],
 })
-export class RegisterPagePage {
+export class RegisterPage {
   private formBuilder: FormBuilder = inject(FormBuilder);
-  passwordType: string = 'password';
-  showIcon: boolean = false;
-
   registerForm: FormGroup;
 
   constructor() {
@@ -73,6 +75,8 @@ export class RegisterPagePage {
         ],
       ],
     });
+
+    addIcons({ checkmark, document, imageOutline, globe, add });
   }
 
   get isFormValid(): boolean {
@@ -134,11 +138,6 @@ export class RegisterPagePage {
     const phoneControl = this.registerForm.get('phone');
     return phoneControl? (phoneControl.touched && phoneControl.hasError( 'pattern')) : false;
 
-  }
-
-  togglePasswordVisibility(): void {
-     this.showIcon = !this.showIcon;
-    this.passwordType = this.showIcon ? 'text' : 'password';
   }
 
   register():void{
