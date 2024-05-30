@@ -23,7 +23,7 @@ import {
 import { userDto } from '../../interfaces/userDto';
 
 import { addIcons } from 'ionicons';
-import { checkmark, document, globe, imageOutline, add } from 'ionicons/icons';
+import { checkmark, document, globe, imageOutline, add, keyOutline, atSharp, personOutline, personAddOutline, callOutline } from 'ionicons/icons';
 
 @Component({
   selector: 'app-register-page',
@@ -76,7 +76,7 @@ export class RegisterPage {
       ],
     });
 
-    addIcons({ checkmark, document, imageOutline, globe, add });
+    addIcons({ checkmark, document, imageOutline, globe, add, keyOutline, atSharp, personOutline, personAddOutline, callOutline});
   }
 
   get isFormValid(): boolean {

@@ -1,13 +1,49 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>login</ion-title>
+<ion-header >
+  <ion-toolbar color="danger">
+    <svg  width="30" height="30" xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="48" d="M244 400L100 256l144-144M120 256h292"/></svg>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">login</ion-title>
-    </ion-toolbar>
-  </ion-header>
+
+  <ion-text class="title-text">
+    Inicio de Sesión
+  </ion-text>
+  
+ <form [formGroup]="loginForm" (ngSubmit)="login()">
+
+  <div class="container1">
+    <ion-icon name="at-sharp" slot="start" class="icon"></ion-icon>
+    <ion-label class="label-text" position="stacked">Correo Eléctronico:</ion-label>
+  <ion-input type="email" formControlName="email"  class="custom-input" [ngClass]="{
+    'failValidate': emailRequired || emailValidate}" ></ion-input>
+    <span *ngIf="emailRequired" class="advice">El correo es requerido</span>
+    <span *ngIf="emailValidate" class="advice">Ingrese correo válido</span>
+  </div>
+
+  <div class="container">
+    <ion-icon name="key-outline" slot="start" class="icon"></ion-icon>
+    <ion-label class="label-text" position="stacked">Contraseña:</ion-label>
+  <ion-input type="password" formControlName="password"  class="custom-input" [ngClass]="{
+    'failValidate': passwordRequired}" >
+    <ion-input-password-toggle slot="end" color="dark"></ion-input-password-toggle>
+  </ion-input>
+  <span *ngIf="passwordRequired" class="advice">La contraseña es requerida</span>
+  </div>
+
+  <ion-button 
+  class="loginButton"
+  color="medium"
+  [disabled]="!isFormValid"
+  expand="block"
+  shape="round"
+   type="submit"
+   class="registerButton"
+   size="medium"
+  >
+  <svg width="24" height="24" slot="start" xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M352 176L217.6 336 160 272"/><rect x="64" y="64" width="384" height="384" rx="48" ry="48" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="32"/></svg>
+  Iniciar Sesión 
+</ion-button>
+ </form>
 </ion-content>
+

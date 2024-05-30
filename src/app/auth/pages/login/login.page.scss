@@ -1,0 +1,57 @@
+
+ion-input {
+    border-radius: 10px !important; 
+    border: 2px solid #ccc !important; 
+    margin-top: 10px !important;
+   
+}
+
+.failValidate{
+    border: 2px solid red !important; 
+}
+
+.registerButton{
+    color: white;
+}
+
+ion-header {
+    --ion-color-danger: #e03131;
+  }
+
+.title-text {
+    display: block;
+    text-align: center;
+    color: rgb(192, 21, 21);
+    font-size: 24px;
+    margin-top: 16px;
+    font-weight: bold;
+  }
+
+
+.loginButton{
+    margin-top: 20px;
+}
+
+.label-text{
+    font-weight: bold;
+}
+
+.container{
+    margin: 40px;
+    margin-top: -20px;
+}
+
+.container1{
+    margin: 40px;
+}
+
+.advice{
+    font-size: px;
+    color: #e03131;
+}
+
+.icon{
+    width: 24px;
+    height: 24px;
+    margin-bottom: -5px;
+}
