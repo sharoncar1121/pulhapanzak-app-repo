@@ -48,8 +48,8 @@
   <div class="container">
     <ion-icon name="person-add-outline" slot="start" class="icon"></ion-icon>
     <ion-label class="label-text" position="stacked">Número de Identidad:</ion-label>
-  <ion-input type="text" formControlName="DNI"  class="custom-input" [ngClass]="{
-    'failValidate': dniRequired ||dniValidate||dniValidatePattern}"
+  <ion-input formControlName="DNI"  class="custom-input" [ngClass]="{
+    'failValidate': dniRequired||dniValidate||dniValidatePattern}"
   type="number"
   ></ion-input>
   <span *ngIf="dniRequired" class="advice">Campo requerido</span>
@@ -59,7 +59,7 @@
   <div class="container">
     <ion-icon name="call-outline" slot="start" class="icon"></ion-icon>
     <ion-label class="label-text" position="stacked">Número de Télefono:</ion-label>
-  <ion-input type="text" formControlName="phone"  class="custom-input" [ngClass]="{
+  <ion-input formControlName="phone"  class="custom-input" [ngClass]="{
     'failValidate': phoneRequired ||phoneValidate||phonePattern}"
   type="number"></ion-input>
   <span *ngIf="phoneRequired" class="advice">Campo requerido</span>
@@ -80,4 +80,5 @@
   Registrarse 
 </ion-button>
  </form>
+ <a routerLink="/login" class="link">¿Ya tienes cuenta? Inicia Sesión</a>
 </ion-content>

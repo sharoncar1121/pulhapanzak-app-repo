@@ -18,12 +18,16 @@ import {
   IonButton,
   IonIcon,
   IonText,
-  IonInputPasswordToggle
+  IonInputPasswordToggle,
+  IonToast,
+  ToastController
 } from '@ionic/angular/standalone';
-import { userDto } from '../../interfaces/userDto';
+import { userDto } from '../../../interfaces/userDto';
 
 import { addIcons } from 'ionicons';
 import { checkmark, document, globe, imageOutline, add, keyOutline, atSharp, personOutline, personAddOutline, callOutline } from 'ionicons/icons';
+import { Router, RouterLink } from '@angular/router';
+import { AuthService } from 'src/app/auth/services/auth.service';
 
 @Component({
   selector: 'app-register-page',
@@ -45,12 +49,16 @@ import { checkmark, document, globe, imageOutline, add, keyOutline, atSharp, per
     IonButton,
     IonIcon,
     IonText,
-    IonInputPasswordToggle
+    IonInputPasswordToggle,
+    RouterLink,
   ],
 })
 export class RegisterPage {
+  private authService = inject(AuthService);
   private formBuilder: FormBuilder = inject(FormBuilder);
+  private _router = inject(Router);
   registerForm: FormGroup;
+  toastController: ToastController = inject(ToastController);
 
   constructor() {
     this.registerForm = this.formBuilder.group({
@@ -141,16 +149,31 @@ export class RegisterPage {
   }
 
   register():void{
-    if(this.registerForm.valid){
-      const register: userDto ={
-        name: this.registerForm?.get('name')?.value,
-        apellidos: this.registerForm?.get('apellidos')?.value,
-        correo: this.registerForm?.get('email')?.value,
-        DNI: this.registerForm?.get('DNI')?.value,
-        password: this.registerForm?.get('password')?.value,
-        telefono: this.registerForm?.get('phone')?.value
-      };
-      console.log(register);
-    }
+   
+    if (this.registerForm.valid) {
+    const user: userDto = this.registerForm?.value;
+       user.photoUrl = '';
+       console.log('User Data:', user); 
+       this.authService
+         .createUserWithEmailAndPassword(user)
+       .then(() => {
+          this.showAlert('Usuario registrado correctamente', false);
+          this._router.navigate(['/home']);
+         })
+         .catch((error) => {
+           console.error(error);
+           this.showAlert('Error al registrar el usuario', true);
+         });
+     }
+  }
+
+  async showAlert(message: string, error: boolean = false): Promise<void> {
+    const toast = await this.toastController.create({
+      message: message,
+      duration: 5000,
+      position: 'bottom',
+      color: error ? 'danger' : 'success',
+    });
+    await toast.present();
   }
 }
