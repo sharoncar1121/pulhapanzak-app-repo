@@ -60,7 +60,7 @@
     <ion-icon name="call-outline" slot="start" class="icon"></ion-icon>
     <ion-label class="label-text" position="stacked">Número de Télefono:</ion-label>
   <ion-input formControlName="phone"  class="custom-input" [ngClass]="{
-    'failValidate': phoneRequired ||phoneValidate||phonePattern}"
+    'failValidate': phoneRequired||phoneValidate||phonePattern}"
   type="number"></ion-input>
   <span *ngIf="phoneRequired" class="advice">Campo requerido</span>
   <span *ngIf="phoneValidate" class="advice">Debe de ingresar al menos 8 carácteres</span>

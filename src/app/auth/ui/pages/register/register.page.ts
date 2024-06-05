@@ -28,6 +28,7 @@ import { addIcons } from 'ionicons';
 import { checkmark, document, globe, imageOutline, add, keyOutline, atSharp, personOutline, personAddOutline, callOutline } from 'ionicons/icons';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from 'src/app/auth/services/auth.service';
+import { minLengthValidator } from 'src/app/auth/validators';
 
 @Component({
   selector: 'app-register-page',
@@ -70,7 +71,7 @@ export class RegisterPage {
         '',
         [
           Validators.required,
-          Validators.minLength(13),
+          minLengthValidator(12),
           Validators.pattern('^[0-9]+$'),
         ],
       ],
@@ -78,7 +79,7 @@ export class RegisterPage {
         '',
         [
           Validators.required,
-          Validators.minLength(8),
+          minLengthValidator(7),
           Validators.pattern('^[0-9]+$'),
         ],
       ],
