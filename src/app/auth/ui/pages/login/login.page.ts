@@ -103,6 +103,7 @@ export class LoginPage {
           this.showAlert('Ha iniciado sesión correctamente');
       }).catch((error)=>{
         this.showAlert('correo o contraseña inválido', true);
+        console.log(error)
       })
     }
   }
