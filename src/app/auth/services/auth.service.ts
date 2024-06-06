@@ -84,4 +84,8 @@ export class AuthService {
     }
   }
 
+  signOut(): Promise<void> {
+    return this._auth.signOut();
+  }
+
 }
