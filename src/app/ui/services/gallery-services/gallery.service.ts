@@ -10,6 +10,7 @@ import {
   where,
   getDocs,
   getDoc,
+  orderBy
 } from '@angular/fire/firestore';
 import { photoDto } from '../../interfaces/photoDto';
 
@@ -28,7 +29,8 @@ export class GalleryService {
     try {
       const photoQuery = query(
         this._collection,
-        where('active', '==', true)
+        where('active', '==', true),
+        orderBy('createdAt', 'desc')
       );
       const photoSnapshot = await getDocs(photoQuery);
       const photos: photoDto[] = [];
