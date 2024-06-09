@@ -159,7 +159,7 @@ export class RegisterPage {
          .createUserWithEmailAndPassword(user)
        .then(() => {
           this.showAlert('Usuario registrado correctamente', false);
-          this._router.navigate(['/home']);
+          this._router.navigate(['/tabs/home']);
          })
          .catch((error) => {
            console.error(error);

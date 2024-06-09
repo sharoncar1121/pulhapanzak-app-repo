@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { addIcons } from 'ionicons';
-import { homeOutline, personOutline, imageOutline } from 'ionicons/icons';
+import { home, person, folderOpen } from 'ionicons/icons';
 import {
   IonIcon,
   IonLabel,
@@ -20,7 +20,7 @@ import {
 export class TabsPage {
 
   constructor() {
-    addIcons({ homeOutline, personOutline, imageOutline });
+    addIcons({ home, person, folderOpen });
   }
 
   }

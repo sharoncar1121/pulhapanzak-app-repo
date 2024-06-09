@@ -40,7 +40,7 @@ export class AuthService {
 
   async createUserWithEmailAndPassword(user: userDto): Promise<void> {
     const isUserLoggedIn = await this.isUserLoggedIn();
-    if (isUserLoggedIn) {
+  if (isUserLoggedIn) {
       return Promise.reject('User is already logged in');
     }
 
@@ -51,7 +51,7 @@ export class AuthService {
     );
     user.uid = response.user?.uid || '';
     return this.createUserInFirestore(user);
-  }
+ }
 
 
   async signInWithEmailAndPassword(model: loginDto): Promise<UserCredential>{
