@@ -12,8 +12,10 @@ export class AuthGuard {
     async canActivate(): Promise<boolean> {
         const isUserLoggedIn = await this._authService.isUserLoggedIn();
         if (!isUserLoggedIn) {
+            console.log(isUserLoggedIn)
             this._router.navigate(['/login']);
         }
+        console.log(isUserLoggedIn)
         return isUserLoggedIn;
     }
 }

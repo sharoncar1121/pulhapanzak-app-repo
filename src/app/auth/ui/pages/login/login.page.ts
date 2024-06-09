@@ -99,7 +99,7 @@ export class LoginPage {
         password: this.loginForm?.get('password')?.value,
       };
       this._authService.signInWithEmailAndPassword(login).then(()=> {
-          this._router.navigate(['/home']);
+          this._router.navigate(['/tabs/home']);
           this.showAlert('Ha iniciado sesión correctamente');
       }).catch((error)=>{
         this.showAlert('correo o contraseña inválido', true);

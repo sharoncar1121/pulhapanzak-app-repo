@@ -15,7 +15,7 @@ import {
   templateUrl: './tabs.page.html',
   styleUrls: ['./tabs.page.scss'],
   standalone: true,
-  imports: [ CommonModule, IonIcon, IonLabel, IonTabButton, IonTabs]
+  imports: [ CommonModule, IonIcon, IonLabel, IonTabButton, IonTabs,  IonTabBar]
 })
 export class TabsPage {
 

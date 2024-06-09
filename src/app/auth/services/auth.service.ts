@@ -34,6 +34,7 @@ export class AuthService {
 
   async isUserLoggedIn(): Promise<boolean>{
     const user = await this.getCurrentUser();
+    console.log(!!user);
     return !!user;
   }
 
