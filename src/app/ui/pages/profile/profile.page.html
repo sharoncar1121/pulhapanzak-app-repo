@@ -6,10 +6,10 @@
 
 <ion-content [fullscreen]="true">
 
- <form [formGroup]="profileForm" (ngSubmit)="register()">
+ <form [formGroup]="profileForm" (ngSubmit)="submit()">
 
   <ion-item>
-    <ion-img [src]="imageSrc" (click)="pickImage()"></ion-img>
+    <ion-img [src]="imageSrc" (click)="pickImage()" class="user-photo"></ion-img>
   </ion-item>
 
   <ion-item class="container1">
@@ -20,7 +20,7 @@
 
   <ion-item class="container">
     <ion-label class="label-text" position="stacked" class="fontSize">Número de Télefono:</ion-label>
-  <ion-input formControlName="phone"  class="custom-input" [ngClass]="{
+  <ion-input formControlName="phoneNumber"  class="custom-input" [ngClass]="{
     'failValidate': phoneRequired||phoneValidate||phonePattern}"
   type="number"></ion-input>
   <span *ngIf="phoneRequired" class="advice">Campo requerido</span>
@@ -29,9 +29,18 @@
 
   <ion-item class="container">
     <ion-label class="label-text" position="stacked" class="fontSize">Fecha de Nacimiento:</ion-label>
-  <ion-input type="date" formControlName="birth"  class="custom-input" [ngClass]="{
-    'failValidate': birthRequired}" ></ion-input>
+  <ion-input type="date" [ngClass]="{
+    'failValidate': birthRequired}" 
+    aria-label="birthdate"
+    name="birthdate"
+    placeholder="Ingrese su fecha de nacimiento"
+    formControlName="birth"
+    displayFormat="DD/MM/YYYY"
+    ngDefaultControl></ion-input>
     <span *ngIf="birthRequired" class="advice">La fecha de nacimiento es requerida</span>
+    <span class="advice" *ngIf="isBirthdateInvalid">
+      La fecha de nacimiento no puede ser mayor que el día actual.
+    </span>
   </ion-item>
 
   <ion-item class="container">
@@ -54,7 +63,8 @@
   >
   Guardar 
 </ion-button>
-<ion-button fill="outline" expand="block"   size="medium" (click)="logout()">Cerrar Sesión</ion-button>
+<ion-button fill="outline" expand="block"   size="medium" (click)="logout()">
+  <ion-icon name="log-out-outline" slot="start" class="icon"></ion-icon> Cerrar Sesión</ion-button>
  </form>
 </ion-content>
 

@@ -67,7 +67,7 @@ export class AuthService {
     return setDoc(userRef, {
       uid: user.uid,
       email: user.email,
-      phoneNumber: user.phone,
+      phoneNumber: user.phoneNumber,
       name: user.name,
       apellidos: user.apellidos,
       DNI: user.DNI,
@@ -85,8 +85,31 @@ export class AuthService {
     }
   }
 
+  updateUser(user: userDto): Promise<void> {
+    if (!user.uid) throw new Error('User must have a uid');
+
+    const userDocument = doc(this._firestore, PATH, user.uid);
+    return updateDoc(userDocument, { ...user });
+  }
+
+
   signOut(): Promise<void> {
     return this._auth.signOut();
+  }
+
+  async getUserLoggued() {
+    try {
+      const user = await this.getCurrentUser();
+      const userDocument = doc(this._firestore, PATH, user?.uid ?? '');
+      const userSnapshot = await getDoc(userDocument);
+      if (userSnapshot.exists()) {
+        const userData = userSnapshot.data() as userDto;
+        return userData;
+      }
+      return null;
+    } catch (error) {
+      throw error;
+    }
   }
 
 }

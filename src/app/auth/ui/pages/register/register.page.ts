@@ -75,7 +75,7 @@ export class RegisterPage {
           Validators.pattern('^[0-9]+$'),
         ],
       ],
-      phone: [
+      phoneNumber: [
         '',
         [
           Validators.required,
@@ -134,17 +134,17 @@ export class RegisterPage {
   }
 
   get phoneRequired(): boolean {
-    const phoneControl = this.registerForm.get('phone');
+    const phoneControl = this.registerForm.get('phoneNumber');
     return phoneControl? (phoneControl.touched && phoneControl.hasError('required')) : false;
   }
 
   get phoneValidate(): boolean {
-    const phoneControl = this.registerForm.get('phone');
+    const phoneControl = this.registerForm.get('phoneNumber');
     return phoneControl? (phoneControl.touched && phoneControl.hasError( 'minlength')) : false;
   }
 
   get phonePattern(): boolean {
-    const phoneControl = this.registerForm.get('phone');
+    const phoneControl = this.registerForm.get('phoneNumber');
     return phoneControl? (phoneControl.touched && phoneControl.hasError( 'pattern')) : false;
 
   }

@@ -5,6 +5,7 @@ export interface userDto {
     email: string;
     DNI: string;
     password: string;
-    phone: string;
+    phoneNumber: string;
     photoUrl: string;
+    birth: Date | null;
 }
