@@ -1,13 +1,60 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>profile</ion-title>
+    <ion-title>Mi Perfil</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">profile</ion-title>
-    </ion-toolbar>
-  </ion-header>
+
+ <form [formGroup]="profileForm" (ngSubmit)="register()">
+
+  <ion-item>
+    <ion-img [src]="imageSrc" (click)="pickImage()"></ion-img>
+  </ion-item>
+
+  <ion-item class="container1">
+    <ion-label class="label-text" position="stacked" class="fontSize">Nombre Completo:</ion-label>
+  <ion-input type="text"  formControlName="name"  class="custom-input" [ngClass]="{'failValidate': nameRequired}"></ion-input>
+  <span *ngIf="nameRequired" class="advice">El nombre es requerido</span>
+  </ion-item>
+
+  <ion-item class="container">
+    <ion-label class="label-text" position="stacked" class="fontSize">Número de Télefono:</ion-label>
+  <ion-input formControlName="phone"  class="custom-input" [ngClass]="{
+    'failValidate': phoneRequired||phoneValidate||phonePattern}"
+  type="number"></ion-input>
+  <span *ngIf="phoneRequired" class="advice">Campo requerido</span>
+  <span *ngIf="phoneValidate" class="advice">Debe de ingresar al menos 8 carácteres</span>
+  </ion-item>
+
+  <ion-item class="container">
+    <ion-label class="label-text" position="stacked" class="fontSize">Fecha de Nacimiento:</ion-label>
+  <ion-input type="date" formControlName="birth"  class="custom-input" [ngClass]="{
+    'failValidate': birthRequired}" ></ion-input>
+    <span *ngIf="birthRequired" class="advice">La fecha de nacimiento es requerida</span>
+  </ion-item>
+
+  <ion-item class="container">
+    <ion-label class="label-text" position="stacked" class="fontSize">Número de Identidad:</ion-label>
+  <ion-input formControlName="DNI"  class="custom-input" [ngClass]="{
+    'failValidate': dniRequired||dniValidate||dniValidatePattern}"
+  type="number"
+  ></ion-input>
+  <span *ngIf="dniRequired" class="advice">Campo requerido</span>
+  <span *ngIf="dniValidate" class="advice">Debe de ingresar al menos 13 carácteres</span>
+  </ion-item>
+
+  <ion-button 
+  color="primary"
+  [disabled]="!isFormValid"
+  expand="block"
+   type="submit"
+   class="registerButton"
+   size="medium"
+  >
+  Guardar 
+</ion-button>
+<ion-button fill="outline" expand="block"   size="medium" (click)="logout()">Cerrar Sesión</ion-button>
+ </form>
 </ion-content>
+
