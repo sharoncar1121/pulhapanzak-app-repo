@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { IonHeader, IonToolbar, IonTitle, IonContent, IonButton, IonButtons, ToastController} from '@ionic/angular/standalone';
 import { AuthService } from '../auth/services/auth.service';
 import { CommonModule } from '@angular/common';
+import { userDto } from '../auth/interfaces/userDto';
 
 @Component({
   selector: 'app-home',
@@ -14,7 +15,19 @@ import { CommonModule } from '@angular/common';
 export class HomePage {
 
   private toastController = inject(ToastController)
+  user: userDto | null = null;
   constructor(private authService: AuthService, private router: Router) {}
+
+  ngOnInit(): void {
+    this.getUserLoggued();
+  }
+
+ 
+  getUserLoggued(): void {
+    this.authService.getUserLoggued().then((user) => {
+      this.user = user;
+    });
+  }
 
   logout(): void {
     this.authService.signOut().then(() => {

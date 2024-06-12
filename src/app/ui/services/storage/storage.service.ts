@@ -15,7 +15,7 @@ export class StorageService {
 
   async uploadImage(imageSrc: string, url: string): Promise<string | null> {
     try {
-      const storageRef = ref(this._storage, `${url}.jpg`);
+      const storageRef = ref(this._storage, `${url}.png`);
 
       const existingFile = await getDownloadURL(storageRef).catch(() => null);
       if (existingFile) {

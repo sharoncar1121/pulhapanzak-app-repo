@@ -20,11 +20,11 @@ import {
   IonText,
   IonInputPasswordToggle,
   IonImg,
-  ToastController
+  ToastController,
 } from '@ionic/angular/standalone';
 
 import { addIcons } from 'ionicons';
-import { checkmark, document, globe, imageOutline, add, keyOutline, atSharp, personOutline, personAddOutline, callOutline, logOutOutline } from 'ionicons/icons';
+import { logOutOutline } from 'ionicons/icons';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { minLengthValidator } from 'src/app/auth/validators';
@@ -55,7 +55,7 @@ import { StorageService } from '../../services/storage/storage.service';
     IonText,
     IonInputPasswordToggle,
     RouterLink,
-    IonImg
+    IonImg,
   ]
 })
 export class ProfilePage  {
@@ -63,7 +63,7 @@ export class ProfilePage  {
   profileForm: FormGroup;
   toastController: ToastController = inject(ToastController);
   private formBuilder: FormBuilder = inject(FormBuilder);
-  imageSrc: string= '';
+  imageSrc: string= 'assets/icons/person.svg';
   private storageService = inject(StorageService);
   user: userDto | null = null;
  
@@ -90,7 +90,7 @@ export class ProfilePage  {
       photoUrl: [''],
     });
 
-    addIcons({ checkmark, document, imageOutline, globe, add, keyOutline, atSharp, personOutline, personAddOutline, callOutline, logOutOutline});
+    addIcons({ logOutOutline});
   }
 
   get isFormValid(): boolean {
@@ -148,7 +148,7 @@ export class ProfilePage  {
   getUserLoggued(): void {
     this.authService.getUserLoggued().then((user) => {
       this.user = user;
-      this.imageSrc = user?.photoUrl ?? this.imageSrc;
+      this.imageSrc = user?.photoUrl && user.photoUrl.trim() !== '' ? user.photoUrl : 'assets/icons/person.svg';
       this.profileForm.patchValue({
         name: user?.name,
         DNI: user?.DNI,
@@ -202,7 +202,7 @@ export class ProfilePage  {
     }
   }
 
-  async pickImage() {
+  async pickPhoto() {
     const image = await Camera.getPhoto({
       quality: 90,
       allowEditing: false,
