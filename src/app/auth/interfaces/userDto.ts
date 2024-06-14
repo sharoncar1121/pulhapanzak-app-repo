@@ -8,4 +8,5 @@ export interface userDto {
     phoneNumber: string;
     photoUrl: string;
     birth: Date | null;
+    deviceId: string | null;
 }
