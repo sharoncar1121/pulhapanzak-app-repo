@@ -1,51 +1,32 @@
-import { Component, inject } from '@angular/core';
-import { Router } from '@angular/router';
-import { IonHeader, IonToolbar, IonTitle, IonContent, IonButton, IonButtons, ToastController} from '@ionic/angular/standalone';
-import { AuthService } from '../auth/services/auth.service';
+import { Component, OnInit, inject } from '@angular/core';
+import { IonHeader, IonToolbar, IonTitle, IonContent, IonButton, IonButtons, IonCard, IonCardContent, IonAvatar, IonItem, IonLabel} from '@ionic/angular/standalone';
 import { CommonModule } from '@angular/common';
-import { userDto } from '../auth/interfaces/userDto';
+import { characterDto } from './models/characterDto.interface';
+import { HomeService } from './services/home.service';
+import { rickAndMortyResponse } from './models/rickAndMortyResponse.interface';
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
   standalone: true,
-  imports: [IonHeader, IonToolbar, IonTitle, IonContent, IonButton, IonButtons, CommonModule],
+  imports: [IonHeader, IonToolbar, IonTitle, IonContent, IonButton, IonButtons, CommonModule, IonCard, IonCardContent, IonAvatar, IonItem,IonLabel ],
 })
-export class HomePage {
+export class HomePage implements OnInit {
 
-  private toastController = inject(ToastController)
-  user: userDto | null = null;
-  constructor(private authService: AuthService, private router: Router) {}
+  characters: characterDto[] = [];
+
+  constructor(private homeService: HomeService) { }
 
   ngOnInit(): void {
-    this.getUserLoggued();
-  }
-
- 
-  getUserLoggued(): void {
-    this.authService.getUserLoggued().then((user) => {
-      this.user = user;
+    this.homeService.getCharacters().subscribe({
+      next: (response: rickAndMortyResponse) => {
+        this.characters = this.homeService.buildCharacters(response);
+      },
+      error: (err) => {
+        console.error('Error fetching characters', err);
+      }
     });
-  }
-
-  logout(): void {
-    this.authService.signOut().then(() => {
-      this.showAlert('Se ha cerrado la sesión correctamente');
-      this.router.navigate(['/login']); 
-    }).catch((error) => {
-      console.error('Error al cerrar sesión', error);
-    });
-  }
-
-  async showAlert(message: string, error:boolean = false): Promise<void>{
-    const toast = await this.toastController.create({
-        message: message,
-        duration: 5000,
-        position: 'bottom',
-        color: error? 'danger' : 'success'
-    });
-    await toast.present();
   }
   
 }

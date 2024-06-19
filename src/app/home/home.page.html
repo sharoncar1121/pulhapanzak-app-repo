@@ -1,16 +1,24 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title size="medium">
-      Bienvenido (a), {{user?.name}}
+    <ion-title>
+      Personajes
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-
-
-  
-<ion-button (click)="logout()">Cerrar Sesión</ion-button>
- 
-
+<ion-content>
+  <ion-card *ngFor="let character of characters" class="character-card">
+    <ion-card-content>
+      <div class="character-container">
+        <ion-avatar slot="start">
+          <img  [src]="character.image" >
+        </ion-avatar>
+        <ion-label class="character-details">
+          <h2>{{ character.name }}</h2>
+          <p>{{ character.species }}</p>
+          <p>{{ character.status }}</p>
+        </ion-label>
+      </div>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
